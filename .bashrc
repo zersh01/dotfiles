@@ -86,3 +86,9 @@ newkey (){
 smartview(){
         for i in $(lsblk --nodeps|grep -v "NAME" |awk '{print $1}'); do echo $i ;smartctl -a /dev/$i | grep "Reallocated_Sector_Ct\|Power_On_Hours\|Current_Pending_Sector\|rema" ;done
 }
+
+#list installed kernel - ubuntu
+listkernel(){
+        sudo dpkg --list | egrep -i --color 'linux-image|linux-headers'
+}
+
