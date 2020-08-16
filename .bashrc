@@ -20,9 +20,10 @@ export PERLDOC_POD2="ru"
 export PYGMENTIZE_STYLE='paraiso-dark'
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
+#http://bashrcgenerator.com/
 export PS1="\[\e[01;31m\]\u\[\e[0m\]\[\e[01;37m\]@\H\[\e[0m\]\[\e[00;37m\] \W\[\e[0m\]\[\e[01;37m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
 
-#Function
+#Simple Function for test DNS
 check_dnsbal(){
 	echo "========ON default  DNS ======="
 	dig $1
