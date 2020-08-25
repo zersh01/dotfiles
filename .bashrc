@@ -23,14 +23,17 @@ export LESSOPEN='|~/.lessfilter %s'
 #http://bashrcgenerator.com/
 export PS1="\[\e[01;31m\]\u\[\e[0m\]\[\e[01;37m\]@\H\[\e[0m\]\[\e[00;37m\] \W\[\e[0m\]\[\e[01;37m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
 
-#Simple Function for test DNS
-check_dnsbal(){
+#A simple function for checking the hostname in multiple DNS servers
+check_dns(){
 	echo "========ON default  DNS ======="
 	dig $1
 	echo "========ON Other-1,2,3======="
-	dig +nocomments @NS1 $1
-	dig +nocomments @NS2 $1
-	dig +nocomments @NS3 $1
+	#Google
+	dig +nocomments @8.8.8.8 $1
+	#Cloudflare
+	dig +nocomments @1.1.1.1 $1
+	#Yandex
+	dig +nocomments @77.88.8.8 $1
 }
 
 #restart network by one command
