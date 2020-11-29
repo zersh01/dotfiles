@@ -91,8 +91,11 @@ smartview(){
         for i in $(lsblk --nodeps|grep -v "NAME" |awk '{print $1}'); do echo $i ;smartctl -a /dev/$i | grep "Reallocated_Sector_Ct\|Power_On_Hours\|Current_Pending_Sector\|rema" ;done
 }
 
-#list installed kernel - ubuntu
+#list installed kernel - ubuntu|centos
 listkernel(){
-        sudo dpkg --list | egrep -i --color 'linux-image|linux-headers'
+        apt-get -v &> /dev/null && sudo dpkg --list | egrep -i --color 'linux-image|linux-headers'
+        which yum &> /dev/null && rpm -qa kernel
+        #may use one line
+        #python -mplatform | grep -qi Ubuntu && echo ubuntu || echo centos
 }
 
