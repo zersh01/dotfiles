@@ -14,4 +14,4 @@ Functions:
  - **sedr** - удалить строку по номеру из .ssh/known_hosts (remove line by number from .ssh/known_hosts)
  - **newkey** - Проверка доступа к удалённому хосту по определённому ключу(Test logon to remote server)
  - **smartview** - вывод наиболее важных параметров SMART всех дисков. (View the most important information about all disks)
- - **listkernel** - вывод всех установленных ядер ubuntu (list installed kernel - ubuntu|centos)
+ - **listkernel** - вывод всех установленных ядер (list installed kernel - ubuntu|centos)

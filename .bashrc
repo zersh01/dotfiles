@@ -9,6 +9,14 @@ alias gitc='git commit -a -m '
 alias gitr='git reset HEAD~ '
 #apt install lazygit
 alias lg='lazygit'
+#reload alias or functions without relogin shell
+alias reload='source ~/.bashrc'
+#find only files
+alias ffind="find . -type f"
+#find only dirs
+alias dfind="find . -type d"
+#fast check network connection
+alias conn="ping -c 3 google.com"
 
 #Terminal
 EDITOR=/usr/bin/vim
@@ -99,3 +107,7 @@ listkernel(){
         #python -mplatform | grep -qi Ubuntu && echo ubuntu || echo centos
 }
 
+#clone git and cd project folder
+gclone() {
+  git clone "$1" && cd "$(basename "$1" .git)"
+}
