@@ -111,3 +111,25 @@ listkernel(){
 gclone() {
   git clone "$1" && cd "$(basename "$1" .git)"
 }
+
+mem2page() {
+        if [ $1 ]; then
+                echo  "$1 * 1024 * 1024 / 4096" |bc
+        else
+                echo "Usage: mem2page NUM-in-MB 
+
+calculate how many pages of memory (4kB each) in megabytes. 
+E.q. for net.ipv4.tcp_mem"
+        fi
+}
+
+page2mem() {
+        if [ $1 ]; then
+                echo "$1 / 1024 / 1024 * 4096"|bc -l |awk -F. '{print $1}'
+        else
+                echo "Usage: page2mem NUM-in-MB 
+
+calculate how many memory (megabytes) in page (4kB each). 
+E.q. for net.ipv4.tcp_mem"
+        fi
+}

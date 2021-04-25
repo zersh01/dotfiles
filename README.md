@@ -15,3 +15,5 @@ Functions:
  - **newkey** - Проверка доступа к удалённому хосту по определённому ключу(Test logon to remote server)
  - **smartview** - вывод наиболее важных параметров SMART всех дисков. (View the most important information about all disks)
  - **listkernel** - вывод всех установленных ядер (list installed kernel - ubuntu|centos)
+ - **mem2page** - calculate how many pages of memory (4kB each) in megabytes
+ - **page2mem** - calculate how many memory (megabytes) in page (4kB each).
