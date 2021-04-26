@@ -112,9 +112,11 @@ gclone() {
   git clone "$1" && cd "$(basename "$1" .git)"
 }
 
-mem2page() {
+mem2page(){
         if [ $1 ]; then
-                echo  "$1 * 1024 * 1024 / 4096" |bc
+                for i in $@; do 
+                        echo "$i * 1024 * 1024 / 4096" |bc 
+                done
         else
                 echo "Usage: mem2page NUM-in-MB 
 
@@ -123,9 +125,12 @@ E.q. for net.ipv4.tcp_mem"
         fi
 }
 
+
 page2mem() {
         if [ $1 ]; then
-                echo "$1 / 1024 / 1024 * 4096"|bc -l |awk -F. '{print $1}'
+                for i in $@; do 
+            	    echo "$i / 1024 / 1024 * 4096"|bc -l |awk -F. '{print $1}'
+		done
         else
                 echo "Usage: page2mem NUM-in-MB 
 
