@@ -138,3 +138,23 @@ calculate how many memory (megabytes) in page (4kB each).
 E.q. for net.ipv4.tcp_mem"
         fi
 }
+
+#check dates and dns names in https server
+ssl-check(){
+        if [ $# -eq 0 ];then
+                echo "Usage:
+Short check:
+        ssl-check doman:port
+
+Check on specific host:
+        ssl-check domain ip:port
+               "
+        fi
+
+        if [ $2 ];then
+            openssl s_client -servername $1 -connect $2 -showcerts -prexit </dev/null 2>/dev/null |sed -n '/BEGIN CERTIFICATE/,/END CERT/p' | openssl x509 -text 2>/dev/null |grep "Not Before\|Not After\|DNS:"
+        else
+            openssl s_client -showcerts -connect $1 -showcerts -prexit </dev/null 2>/dev/null |sed -n '/BEGIN CERTIFICATE/,/END CERT/p' | openssl x509 -text 2>/dev/null |grep "Not Before\|Not After\|DNS"
+        fi
+}
+

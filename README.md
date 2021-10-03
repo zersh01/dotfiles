@@ -17,3 +17,5 @@ Functions:
  - **listkernel** - вывод всех установленных ядер (list installed kernel - ubuntu|centos)
  - **mem2page** - calculate how many pages of memory (4kB each) in megabytes
  - **page2mem** - calculate how many memory (megabytes) in page (4kB each).
+ - **ssl-check** - check dates and dns names in https server
+
