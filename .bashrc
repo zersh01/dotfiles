@@ -53,16 +53,21 @@ netrestart(){
     ifconfig enp4s0
 }
 
-# ipmi serial-over-lan function
+#ipmi serial-over-lan function
 isol() {
    if [ -n "$1" ]; then
-	echo "If you not connect to CONSOLE, run command manualy with option -P Password like:
->ipmitool -I lanplus -U ADMINUSER -P PASSWORD -H IP_ADDRESS sol activate
+                ipmitool -I lanplus -U ADMIN -H $1 sol activate
+   else
+                         echo "usage: isol <sol_ip>
+
+You may connect to CONSOLE, manualy:
+ipmitool -I lanplus -U ADMIN -H IP_ADDRESS sol activate
+
+or to IPMI shell
+
+ipmitool -I lanplus -U ADMIN -H IP_ADDRESS shell
 
 "
-	ipmitool -I lanplus -U ADMINUSER -H $1 sol activate
-   else
-       echo "usage: isol <sol_ip>"
    fi
 }
 
@@ -158,3 +163,5 @@ Check on specific host:
         fi
 }
 
+#print column by number
+awkt() { awk "{print \$${1:-1}}"; }

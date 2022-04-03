@@ -18,4 +18,6 @@ Functions:
  - **mem2page** - calculate how many pages of memory (4kB each) in megabytes
  - **page2mem** - calculate how many memory (megabytes) in page (4kB each).
  - **ssl-check** - check dates and dns names in https server
+ - **awkt** - Печать столбца по номеру (print column by number)
+
 
