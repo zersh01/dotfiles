@@ -56,20 +56,19 @@ netrestart(){
 #ipmi serial-over-lan function
 isol() {
    if [ -n "$1" ]; then
-                ipmitool -I lanplus -U ADMIN -H $1 sol activate
+
+     if [ $2 == "sol" ];then
+        ipmitool -I lanplus -U ADMIN -H $1 sol activate
+     fi
+     if [ $2 == "shell" ];then
+        ipmitool -I lanplus -U ADMIN -H $1 shell
+     fi
    else
-                         echo "usage: isol <sol_ip>
-
-You may connect to CONSOLE, manualy:
-ipmitool -I lanplus -U ADMIN -H IP_ADDRESS sol activate
-
-or to IPMI shell
-
-ipmitool -I lanplus -U ADMIN -H IP_ADDRESS shell
-
+       echo "Usage:  isol ip_address sol | shell
 "
    fi
 }
+
 
 #Connect and forward window from remote libvirt server
 vm(){
