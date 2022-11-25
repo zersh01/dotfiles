@@ -17,6 +17,8 @@ alias ffind="find . -type f"
 alias dfind="find . -type d"
 #fast check network connection
 alias conn="ping -c 3 google.com"
+#information about the request execution time
+alias curld="curl -Lso /dev/null -w 'Time DNS: %{time_namelookup}\nTime connect: %{time_connect} \nTime pretransfer: %{time_pretransfer}\nTime start transfer: %{time_starttransfer}\nTime total: %{time_total}\n'"
 
 #Terminal
 EDITOR=/usr/bin/vim

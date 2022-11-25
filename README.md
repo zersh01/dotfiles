@@ -19,5 +19,6 @@ Functions:
  - **page2mem** - calculate how many memory (megabytes) in page (4kB each).
  - **ssl-check** - check dates and dns names in https server
  - **awkt** - Печать столбца по номеру (print column by number)
+ - **curld** - информация о времени выполнения запроса - время обращения к dns,подключения, начала передачи, итоговое (information about the request execution time)
 
 
