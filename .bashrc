@@ -5,7 +5,7 @@ alias rscp='rsync -aP'
 alias rsmv='rsync -aP --remove-source-files'
 #apt install ipcalc
 alias ipcalc='ipcalc -n '
-alias gitc='git commit -a -m '
+alias gitc='git add * && git commit -a -m '
 alias gitr='git reset HEAD~ '
 #apt install lazygit
 alias lg='lazygit'
