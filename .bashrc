@@ -174,3 +174,12 @@ Show certificate only:
 
 #print column by number
 awkt() { awk "{print \$${1:-1}}"; }
+
+# $srv задаём ручками перед выполнением команды
+fors() { 
+  for i in $srv; do
+    echo $i
+    ssh $i "$@"
+  done
+}
+
