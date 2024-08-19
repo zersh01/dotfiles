@@ -150,7 +150,10 @@ ssl-check(){
 
         if [ $# -eq 0 ];then
                 echo "Usage:
-Short check:
+Short check (443 - default port):
+        ssl-check doman
+
+Check on specific port:
         ssl-check doman:port
 
 Check on specific host:
@@ -161,14 +164,22 @@ Show certificate only:
                "
         fi
 
-        if [ $2 ];then
-            #if want show only
-            if [ $2 = "show" ];then
-                openssl s_client -showcerts -verify 5 -connect $1 < /dev/null |grep -i "depth\|subject"
-    	    fi
-            openssl s_client -servername $1 -connect $2 -showcerts -prexit </dev/null 2>/dev/null |sed -n '/BEGIN CERTIFICATE/,/END CERT/p' | openssl x509 -text 2>/dev/null |grep "Not Before\|Not After\|DNS:"
+        if [[ $1 =~ ^([^:]+):([0-9]+)$ ]]; then
+            domain="${BASH_REMATCH[1]}"
+            port="${BASH_REMATCH[2]}"
         else
-            openssl s_client -showcerts -connect $1 -showcerts -prexit </dev/null 2>/dev/null |sed -n '/BEGIN CERTIFICATE/,/END CERT/p' | openssl x509 -text 2>/dev/null |grep "Not Before\|Not After\|DNS"
+            domain="$1"
+            port="443"  # Порт по умолчанию
+        fi
+
+        if [ $2 ];then
+            #if show - show cert
+            if [ $2 = "show" ];then
+                openssl s_client -showcerts -verify 5 -connect "$domain:$port" < /dev/null |grep -i "depth\|subject"
+            fi
+            openssl s_client -servername "$domain" -connect "$domain:$port" -showcerts -prexit </dev/null 2>/dev/null |sed -n '/BEGIN CERTIFICATE/,/END CERT/p' | openssl x509 -text 2>/dev/null |grep "Not Before\|Not After\|DNS:"
+        else
+                openssl s_client -showcerts -connect "$domain:$port" -showcerts -prexit </dev/null 2>/dev/null |sed -n '/BEGIN CERTIFICATE/,/END CERT/p' | openssl x509 -text 2>/dev/null |grep "Not Before\|Not After\|DNS"
         fi
 }
 
